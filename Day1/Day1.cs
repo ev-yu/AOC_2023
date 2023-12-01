@@ -2,35 +2,28 @@
 using System.Xml.Linq;
 using Colibri;
 
-namespace Day1
+namespace Solutions
 {
-	internal class Program
+	internal class Day1
 	{
-		static void Main(string[] args)
-		{
-			Part2();
-		}
-
-		static void Part1()
+		public static void Part1()
 		{
 			List<string> lines = File.ReadAllLines("input.txt").ToList();
 			int total = 0;
 			foreach (string line in lines)
 			{
-
-				List<char> nums = line.Where(x => x >= '0' && x <= '9').ToList();
-				if (nums.Count == 1)
-					nums.Add(nums.Single());
-				else
-					nums = new List<char>() { nums.First(), nums.Last() };
-				string numString = nums.First().ToString() + nums.Last().ToString();
-				int value = int.Parse(numString);
-				total += value;
+				// Find all number characters in the line
+				List<char> foundNumbers = line.Where(x => x is >= '0' and <= '9').ToList();
+				// Get the first and last found numbers.
+				// // If only one was found, this will conveniently pick it twice
+				// Concatenate them, then parse that number, and add it to the total
+				string numString = foundNumbers.First().ToString() + foundNumbers.Last().ToString();
+				total += int.Parse(numString);
 			}
 			Console.WriteLine(total);
 		}
 
-		static void Part2()
+		public static void Part2()
 		{
 			List<string> lines = File.ReadAllLines("input.txt").ToList();
 			int total = 0;
@@ -53,7 +46,6 @@ namespace Day1
 					// Here, we select all of the entries in the numberMapping dict which match the start of our substring
 					// This will leave exactly one or zero entries, but KeyValuePair isnt a reference type so i can't just use SingleOrNull :(
 					KeyValuePair<string, int> writtenNumberMatch = numberMapping.SingleOrDefault(x => substring.StartsWith(x.Key));
-
 					// Check if the first character in the substring is a number character
 					char firstChar = substring.First();
 					if (firstChar >= '0' && firstChar <= '9')
@@ -68,7 +60,7 @@ namespace Day1
 						i += writtenNumberMatch.Key.Length - 1;
 						foundNumbers.Add(writtenNumberMatch.Value);
 					}
-					// Otherwise, just skip to the next one
+					// Otherwise, 
 					else
 					{
 						i++;
@@ -76,9 +68,9 @@ namespace Day1
 				}
 				// Get the first and last found numbers.
 				// If only one was found, this will conveniently pick it twice
+				// Concatenate them, then parse that number, and add it to the total
 				string numString = foundNumbers.First().ToString() + foundNumbers.Last().ToString();
-				int value = int.Parse(numString);
-				total += value;
+				total += int.Parse(numString);
 			}
 			Console.WriteLine(total);
 		}
