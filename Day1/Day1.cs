@@ -13,7 +13,7 @@ namespace Solutions
 			foreach (string line in lines)
 			{
 				// Find all number characters in the line
-				List<char> foundNumbers = line.Where(x => x is >= '0' and <= '9').ToList();
+				List<char> foundNumbers = line.Where(x => x.IsDigit()).ToList();
 				// Get the first and last found numbers.
 				// // If only one was found, this will conveniently pick it twice
 				// Concatenate them, then parse that number, and add it to the total
@@ -48,7 +48,7 @@ namespace Solutions
 					KeyValuePair<string, int> writtenNumberMatch = numberMapping.SingleOrDefault(x => substring.StartsWith(x.Key));
 					// Check if the first character in the substring is a number character
 					char firstChar = substring.First();
-					if (firstChar >= '0' && firstChar <= '9')
+					if (firstChar.IsDigit())
 					{
 						// If it is, stop parsing
 						i++;
