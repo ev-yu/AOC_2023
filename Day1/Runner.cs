@@ -11,7 +11,7 @@ namespace Solutions
 		static void Main()
 		{
 			//Day1.Part2();
-			Day2.Part2_Linq();
+			Day3.Part2();
 		}
 	}
 }
