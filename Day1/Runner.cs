@@ -10,8 +10,7 @@ namespace Solutions
 	{
 		static void Main()
 		{
-			//Day1.Part2();
-			Day5.Part2();
+			Day6.Part2();
 		}
 	}
 }
